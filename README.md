@@ -22,6 +22,7 @@ On this website, you can store all your important and personal brief notes that 
 
 - Email service => gmail smtp 
 - Bootstrap => CSS
+- JavaScript => For major onpage actions.
 - sqlite3 => Database (default)
 - 404 and 500 error page (Works when you make debug:False)
 
