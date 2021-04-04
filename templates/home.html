@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Welcome to Jotting
+{% endblock title %}
+{% block head %}
+
+{% endblock head %}
+
+{% block body %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Message :</strong> {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+
+{% endfor %}
+{% endif %}
+
+<!--model top-->
+<div class="container">
+    <center>
+        <button type="button" class="btn btn-dark m-3" data-toggle="modal" data-target="#exampleModalLong">
+            Add note
+        </button>
+
+    </center>
+    {% if searchCheck %}
+    <center>
+        <a href="home"><button type="button" class="btn btn-secondary  m-3">View all Notes</button></a>
+    </center>
+
+    <!--toast-->
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Message!</strong> {{note_msg}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <!--toast ends-->
+    {% endif %}
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Note</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="getdata" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Add heading</label>
+                            <input type="text" class="form-control" name="head" id="recipient-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Add note</label>
+                            <textarea class="form-control" name="base" id="message-text"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% if new %}
+    <!-- Flexbox container for aligning the toasts -->
+    <div class="card text-center">
+        <div class="card-header">
+            <img src={% static '/icons/j2.png' %} class="rounded mr-2" alt="jotting logo"
+                style="height:54px; width:54px">
+            <strong class="">o t t i n g </strong>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Hello {{request.user}}!</h5>
+            <p class="card-text">{{mesg}}</p><br><hr>
+            <button type="button" class="btn btn-info">About Version 2.0</button><br>
+            <p>1. New look of the website.</p>
+            <p>2. Login and SignUp bugs fixed.</p>
+            <p>3. User interface added for 404 and 500 server error .</p>
+            <p>4. Fixed server errors and minor bugs.</p>
+            <hr>
+        </div>
+        <div class="card-footer text-muted">
+            We are glad to have you. Enjoy.
+        </div>
+    </div>
+
+    {% endif %}
+
+    <!--1st card-->
+    <div class="row">
+        <!--loop starts-->
+        {% if data %}
+        {% for value in data %}
+        <div class="col-md-3 ">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{value.heading}}</h5>
+                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                        data-target="#staticBackdrop-{{value.id}}">Delete</button>
+                    <button type="button" class="btn btn-dark" data-toggle="modal"
+                        data-target="#exampleModalCenter-{{value.id}}">
+                        view note</button>
+                </div>
+            </div>
+        </div>
+        <!--1st modal-->
+        <div class="modal fade" id="exampleModalCenter-{{value.id}}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" id="view_heading-{{value.id}}" data-value="{{value.heading}}">
+                        <h5 class="modal-title" id="exampleModalLongTitle">{{value.heading}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="view_note-{{value.id}}" data-value="{{value.main_note}}">
+                        {{value.main_note}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-dismiss="modal"
+                            onclick="editshare({{value.id}})"
+                            data-target=".bd-example-modal-sm-{{value.id}}">share</button>
+                        <button type="button" class="btn btn-dark" data-toggle="modal" data-dismiss="modal"
+                            onclick="edit({{value.id}})" data-target="#exampleModal-{{value.id}}"
+                            data-whatever="@mdo">edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--1 end-->
+        <!--2 modal-->
+        <div class="modal fade" id="exampleModal-{{value.id}}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">edit mode</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="editNote/{{value.id}}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Heading</label>
+                                <input type="text" class="form-control" id="edit_head-{{value.id}}" name="headEdit"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Note</label>
+                                <textarea class="form-control" id="edit_note-{{value.id}}" name="baseEdit"></textarea>
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="submit" class="btn btn-dark">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--2nd end-->
+        <!--3 modal-->
+        <div class="modal fade bd-example-modal-sm-{{value.id}}" tabindex="-1" role="dialog"
+            aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Sharing Note</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="shareNote/{{value.id}}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Email Address</label>
+                                <input type="email" class="form-control" name="mail"
+                                    pattern="[a-zA-Z0-9.-_#]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                                    title="input a valid email address." id="recipient-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Heading</label>
+                                <input type="text" class="form-control" name="headShare" id="edit_head2-{{value.id}}"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Note</label>
+                                <textarea class="form-control" id="edit_note2-{{value.id}}" name="baseShare"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" name="submit" value="Submit" class="btn btn-warning">Send
+                                    Note</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!--3 end-->
+        <!--confirm delete modal-->
+        <div class="modal fade" id="staticBackdrop-{{value.id}}" data-backdrop="static" data-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Confirm delete</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Do you want to delete it permanently.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form action="deleteNote" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="noteID" value={{value.id}}>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--confirm delete ends-->
+        {% endfor %}
+        {% endif %}
+
+        <!--loop end-->
+        <!--last div-->
+    </div>
+
+</div>
+
+<script>
+
+    function edit(id_num) {
+        id = id_num.toString();
+        var txt = document.getElementById("view_heading-".concat(id)).getAttribute('data-value');
+        var txt2 = document.getElementById("view_note-".concat(id)).getAttribute('data-value');
+
+        document.getElementById("edit_head-".concat(id)).value = txt;
+        document.getElementById("edit_note-".concat(id)).value = txt2;
+    }
+    function editshare(id_num) {
+        id = id_num.toString();
+        var txt = document.getElementById("view_heading-".concat(id)).getAttribute('data-value');
+        var txt2 = document.getElementById("view_note-".concat(id)).getAttribute('data-value');
+        document.getElementById("edit_head2-".concat(id)).value = txt;
+        document.getElementById("edit_note2-".concat(id)).value = txt2;
+    }
+</script>
+{% endblock body %}

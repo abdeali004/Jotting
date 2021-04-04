@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About Us - Jotting
+{% endblock title %}
+
+
+{% block body %}
+<div class="container">
+<!--card 1-->
+<div class="card text-center">
+  <div class="card-header">
+    <h2>About Jotting</h2>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">What is Jotting?</h5>
+    <p class="card-text">A brief note is called Jotting.</p>
+   
+    <p>On this website, you can store all your important and personal brief notes that can be accessed anywhere from any device with an internet connection and web browser supported.
+   So move ahead and store all your imaginations and ideas just with a simple click.  Create your notes, edit them, and also you can share them through email with anyone..</p>
+    <a href="home" class="btn btn-dark">Go create</a>
+  </div>
+  <div class="card-footer text-muted">
+    Thank you for being a part of my family.
+  </div>
+</div>
+<!--card 2-->
+
+
+<!--my card-->
+<div class="card text-center">
+  <div class="card-header">
+    <h2>About Developer</h2>
+  </div>
+  <div class="card-body">
+  <center>
+  <div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src={% static '/images/abdeali004s.png' %} class="card-img" alt="..." style = "max-width: 10rem;">
+    </div>
+    <div class="col-md-8 dev-body">
+      <div class="card-body">
+        <h5 class="card-title">Abdeali Stationwala</h5>
+        <p class="card-text">I am a student of MCA and highly passionate about coding. I am a backend developer and having a high interest in the field of data science.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</center>
+<div class = "container">
+    <h5 class="card-title">Vision</h5>
+    <p class="card-text">Transform the field of Data Science with Innovative break through’s in various aspects of Business Intelligence, Data Analytics, Data Engineering, Deep Learning, Artificial Intelligence.</p>
+    <a href="home" class="btn btn-dark">Create Note</a>
+  </div>
+</div>
+<div class="card-footer text-muted">
+  <div class="container">
+   <div class="row justify-content-center">
+      <div class="col-md-1" style="width: 7rem;">
+        <a href = "https://www.linkedin.com/in/abdeali004" target = "_blank"><img src="{% static '/icons/linkedin.png' %}" class="card-img-top" alt="..."></a>
+      </div>
+      <div class="col-md-1" style="width: 7rem;">
+        <a href = "https://github.com/abdeali004" target = "_blank"><img src="{% static '/icons/github.png' %}" class="card-img-top" alt="..."></a>
+      </div>
+      <div class="col-md-1" style="width: 7rem;">
+        <a href = "https://twitter.com/abdeali004" target = "_blank"><img src="{% static '/icons/tweet.png' %}" class="card-img-top" alt="..."></a>
+      </div>
+      <div class="col-md-1" style="width: 7rem;">
+        <a href = "https://www.instagram.com/abdeali004/" target = "_blank"><img src="{% static '/icons/instagram.png' %}" class="card-img-top" alt="..."></a>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="card-footer text-muted">
+    <a href= "#">LoveToCode</a>
+  </div>
+</div>
+<!--card 2 ends-->
+</div>
+
+{% endblock body %}

@@ -1,0 +1,30 @@
+.navlook
+{
+    border-radius: 15px !important;
+    margin: 5px !important;
+}
+
+.card
+{
+    margin: 5px;
+    margin-top: 15px;
+    background-color: rgb(221, 226, 226);
+    height : auto;
+}
+
+.modified
+{
+    font-size: 12px;
+    color: darkolivegreen;
+}
+
+textarea
+{
+    height: 130px;
+}
+
+.dev-body
+{
+    background-color: rgb(233, 232, 208);
+}
+
