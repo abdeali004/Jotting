@@ -15,7 +15,6 @@ On this website, you can store all your important and personal brief notes that 
 - The pages like register code, sharing note may crash because they work on email service.  So before running the project kindly give the credentials of your gmail account in settings(at last emailId & Password).
 - I recommend you to create a dummy gmail account for this project.
 - In start the code will seems to be bit complex to understand but i know you will get it.
-- The repo is private, so please contact me for the access.
 - I also recommend you to please work your own branch and test it before merging.
 
 # Things used in project-Jotting
