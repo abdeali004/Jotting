@@ -8,6 +8,8 @@ On this website, you can store all your important and personal brief notes that 
 
 - https://jottingapp.herokuapp.com/
 
+![alt text](https://github.com/abdeali004/Jotting/tree/master/Project_Images/home.png?raw=true)
+
 # Note for the users
 
 - I created this website to see how Django works and how the database works in django. 
@@ -16,6 +18,8 @@ On this website, you can store all your important and personal brief notes that 
 - I recommend you to create a dummy gmail account for this project.
 - In start the code will seems to be bit complex to understand but i know you will get it.
 - I also recommend you to please work your own branch and test it before merging.
+
+![alt text](https://github.com/abdeali004/Jotting/tree/master/Project_Images/search.png?raw=true)
 
 # Things used in project-Jotting
 
