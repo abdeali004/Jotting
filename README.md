@@ -8,7 +8,7 @@ On this website, you can store all your important and personal brief notes that 
 
 - https://jottingapp.herokuapp.com/
 
-![alt text](https://github.com/abdeali004/Jotting/tree/master/Project_Images/home.png?raw=true)
+![alt text](https://github.com/abdeali004/Jotting/blob/master/Project_Images/home.png?raw=true)
 
 # Note for the users
 
@@ -19,7 +19,7 @@ On this website, you can store all your important and personal brief notes that 
 - In start the code will seems to be bit complex to understand but i know you will get it.
 - I also recommend you to please work your own branch and test it before merging.
 
-![alt text](https://github.com/abdeali004/Jotting/tree/master/Project_Images/search.png?raw=true)
+![alt text](https://github.com/abdeali004/Jotting/blob/master/Project_Images/search.png?raw=true)
 
 # Things used in project-Jotting
 
