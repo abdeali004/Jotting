@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
+from MyCollection import garbageCorner
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '09&i$))76z%m@4h5m*fq40$t$7q2e7#mu8y!e9c0%9u*=3fq$r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*.vercel.app']
 
 
 # Application definition
@@ -122,11 +123,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static', ]
 
 # Email configuration
-
-EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST = 'smtp-relay.sendinblue.com'
+EMAIL_HOST_USER = 'apikey'  # this is exactly the value 'apikey'
+# this is your API key
+EMAIL_HOST_PASSWORD = garbageCorner.getEmailPass()
+EMAIL_HOST_USER = "abdeali2me@outlook.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "email"
-EMAIL_HOST_PASSWORD = "password!"
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
